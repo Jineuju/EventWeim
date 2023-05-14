@@ -1,0 +1,67 @@
+@charset "utf-8";
+.one {
+  width: 500px;
+  height: 500px;
+  background-color: yellow;
+  z-index: 1;
+}
+
+.two {
+  width: 300px;
+  height: 300px;
+  background-color: blue;
+  z-index: 2;
+}
+
+.three {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  z-index: 3;
+}
+
+/*
+왜 three박스를 클릭하면 왜 세개 다 호출이 될까?
+
+브라우저는 특정화면 요소에서 이벤트가 발생하였을때
+그 이벤트를 최상위에 있는 화면 요소까지 이벤트를 전파시킵니다.
+즉 three에서 이벤트가 발생하면 최상위요소인 one까지
+이벤트가 전파되어 three, two, one으로 전파시키는 것입니다.
+
+이런 현상의 이름은 이벤트 버블링이라고합니다.
+
+반대현상도 있어요
+이벤트 캡쳐라고 합니다
+
+하지만 버블링은 추가 작업이 없이 일어나는건데요
+캡쳐는 특별한 옵션으로 활성화시켜야해요
+버블링이랑 캡쳐를 합쳐서 "이벤트 위임"이라고 한답니다
+
+자바스크립트에서는 동적으로 DOM을 생성할때가 많아요
+따라서 현상태에서는 돔이 생성되지 않았으나
+미래시로 생성될 돔을 제어하여 이벤트를 부여해야할 경우도
+종종 있어요
+
+mouseenter, mouseleave
+mouseover, mouseout
+hover
+
+1. 마우스가 해당요소에 접근 혹은 들어갈 때
+mouseenter와 mouseover입니다
+둘의 차이는 이벤트위임의 발생여부입니다.
+mouseenter는 이벤트위임이 발생하지 않아요
+그러나 mouseover는 이벤트위임이 발생해요
+
+2. hover라는 메소드
+css hover와의 차이점은 무엇일까요
+css hover는 (원 코드와 hover를 붙인 코드)
+두가지 상태를 오가며 작동합니다
+
+반면 js에서의 hover는
+hover(함수1, 함수2)로 작성하며
+css처럼 마우스가 떠날 때 다시 원상태로
+복구되는 것이 아니라
+함수2로 덮어쓰는것입니다. 즉, 복구되지 않습니다.
+
+호버는 css로 쓰는게 좋아요
+*/
